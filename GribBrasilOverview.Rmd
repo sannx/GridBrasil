@@ -1,0 +1,71 @@
+---
+title: "Brazil grid to process remote sensing data"
+author: "Oliveira-Santos, Claudinei"
+date: "18 de setembro de 2017"
+output: 
+  html_document: 
+    fig_caption: yes
+    fig_height: 10
+    fig_width: 10
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Grid Brasi
+
+Grid do Brasil com diferentes escalas de tiles. O objetivos é facilitar o processamento distribuido de dados de diferentes resoluções.
+
+```{r cars packages and functions, message=FALSE}
+library(raster)
+```
+
+#Grid de 222 km
+```{r grid 222, echo=FALSE, cache=TRUE}
+grd222Br <- shapefile("gridbrasil/Grid_br_222_km_wgs84.shp")
+# shapefile(grd222Br, file = "gridbrasil/gridbrasilBrLim/Grid_BrLim_222_km_wgs84.shp")
+
+head(grd222Br)
+plot(grd222Br)
+plot(grd222Br, col = "darkblue", add = TRUE)
+```
+
+
+#Grid de 111 km
+```{r grid 111, echo=FALSE, cache=TRUE}
+grd111 <- shapefile("gridbrasil/Grid_br_111_km_wgs84.shp")
+head(grd111)
+
+grd111Br <- grd111[grd111$inbrasil == 1, ]
+# shapefile(grd111Br, file = "gridbrasil/gridbrasilBrLim/Grid_BrLim_111_km_wgs84.shp")
+
+plot(grd111)
+plot(grd111Br, col = "darkgreen", add = TRUE)
+```
+
+
+#Grid de 55 km
+```{r grid 55, echo=FALSE, cache=TRUE}
+grd55 <- shapefile("gridbrasil/Grid_br_55_km_wgs84.shp")
+head(grd55)
+
+grd55Br <- grd55[grd55$inbrasil == 1, ]
+# shapefile(grd55Br, file = "gridbrasil/gridbrasilBrLim/Grid_BrLim_55_km_wgs84.shp")
+
+plot(grd55)
+plot(grd55Br, col = "tomato", add = TRUE)
+```
+
+
+#Grid de 11 km
+```{r grid 11, echo=FALSE, cache=TRUE}
+grd11 <- shapefile("gridbrasil/Grid_br_11_km_wgs84.shp")
+head(grd11)
+
+grd11Br <- grd11[grd11$inbrasil == 1, ]
+# shapefile(grd11Br, file = "gridbrasil/gridbrasilBrLim/Grid_BrLim_11_km_wgs84.shp")
+
+plot(grd11)
+plot(grd11Br, col = "darkred", add = TRUE)
+```

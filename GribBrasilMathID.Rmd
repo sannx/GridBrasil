@@ -1,0 +1,76 @@
+---
+title: "Index to grid of Brazil to process remote sensing data"
+author: "Oliveira-Santos, Claudinei"
+date: "18 de setembro de 2017"
+output: 
+  html_document: 
+    fig_caption: yes
+    fig_height: 10
+    fig_width: 10
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Grid Brasi
+
+Grid do Brasil com diferentes escalas de tiles. O objetivos é facilitar o processamento distribuido de dados de diferentes resoluções.
+
+```{r cars packages and functions, message=FALSE}
+library(raster)
+
+options(width = 300)
+```
+
+#Grid de 222 km
+
+Numero de tiles = 226
+```{r grid 222, echo=FALSE, cache=TRUE}
+grd222Br <- shapefile("gridbrasil/gridbrasilBrLim/Grid_BrLim_222_km_wgs84.shp")
+grd222Br
+plot(grd222Br, col = "darkblue")
+```
+
+
+#Grid de 111 km
+
+Numero de tiles = 812
+```{r grid 111, echo=FALSE, cache=TRUE}
+grd111Br <- shapefile("gridbrasil/gridbrasilBrLim/Grid_BrLim_111_km_wgs84.shp")
+grd111Br
+plot(grd111Br)#, col = "darkgreen")
+
+```
+
+
+#Grid de 55 km
+
+Numero de tiles = 3046
+```{r grid 55, echo=FALSE, cache=TRUE}
+grd55Br <- shapefile("gridbrasil/gridbrasilBrLim/Grid_BrLim_55_km_wgs84.shp")
+grd55Br
+plot(grd55Br)#, col = "tomato")
+```
+
+
+#Grid de 11 km
+
+Numero de tiles = 72167
+```{r grid 11, echo=FALSE, cache=TRUE}
+grd11Br <- shapefile("gridbrasil/gridbrasilBrLim/Grid_BrLim_11_km_wgs84.shp")
+grd11Br
+plot(grd11Br)#, col = "darkred")
+
+
+```
+#Grid de 11 - 222 km
+
+Numero de tiles = 72167
+```{r grid Index, echo=FALSE, cache=TRUE}
+grd11_222Br <- shapefile("gridbrasil/gridbrasilBrLim/Grid_BrLim_11_222km_wgs84.shp")
+INDEXgrd11_222br <- grd11_222Br@data
+IndexGrdBrLim <- as.data.frame(INDEXgrd11_222br[,3:6])
+# write.csv(IndexGrdBrLim, file = "gridbrasil/gridbrasilBrLim/IndexGrdBrLim.csv", row.names = FALSE)
+head(IndexGrdBrLim)
+```
